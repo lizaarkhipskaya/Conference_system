@@ -2,6 +2,8 @@ package controller;
 
 import controller.command.CommandFactory;
 import controller.command.Command;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class MainServlet extends HttpServlet {
+    private final static Logger LOGGER = LogManager.getLogger(MainServlet.class);
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -23,22 +26,18 @@ public class MainServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request,
                                 HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("servler");
         CommandFactory commandFactory = new CommandFactory();
         Command command = commandFactory.getCommand(request);
         String page = command.execute(request);
         if (page.contains("redirect:")) {
-            //LOG.trace("page with redirect: " + page);
-            //LOG.trace("path after filtering: " + request.getContextPath() + page.replace("redirect:", ""));
+            LOGGER.trace("page with redirect: " + page);
             response.sendRedirect(request.getContextPath() + page.replace("redirect:", ""));
         } else {
-            //LOG.trace( "page" + page);
+            LOGGER.trace( "page" + page);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-// вызов страницы ответа на запрос
-            System.out.println("before forward dispatcher");
             dispatcher.forward(request, response);
-            //request.getRequestDispatcher(page).forward(request,response);
         }
 
     }
 }
+//add log configuration

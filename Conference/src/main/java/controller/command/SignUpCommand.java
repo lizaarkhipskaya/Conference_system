@@ -1,5 +1,7 @@
 package controller.command;
 
+import controller.manager.ContentManager;
+import controller.manager.PathManager;
 import model.entity.User;
 import model.service.UserService;
 
@@ -7,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 public class SignUpCommand implements Command {
-    public  ResourceBundle rs = ResourceBundle.getBundle("jsp_path");
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -18,11 +19,10 @@ public class SignUpCommand implements Command {
             UserService userService = new UserService();
             User user = userService.addUser(parameters);
             request.getSession().setAttribute("user",user);
-            return  "redirect:/"+user.getRole().toString().toLowerCase()+rs.getString("page_main");
+            return  "redirect:"+ PathManager.getProperty("main_page");
         }
-        Map<String, String> correctParam = getCorrectParameters(parameters, request);
         request.setAttribute("correctParameters",getCorrectParameters(parameters,request));
-        return rs.getString("sign_up");
+        return PathManager.getProperty("sign_up");
     }
 
     public  Map<String,String> getAllParameters(Map<String, String[]> parametersFromRequest){
@@ -47,8 +47,7 @@ public class SignUpCommand implements Command {
                     corectParameters.put(key, value);
                 }
                 else {
-                    System.out.println(value + " incorrect");
-                    request.setAttribute("incorrect_"+key, rs.getString("incorrect."+key));
+                    request.setAttribute("incorrect_"+key, ContentManager.getLocalizedContent("incorrect."+key,Locale.getDefault()));//change locale !!!!!
                 }
             }
         return  corectParameters;

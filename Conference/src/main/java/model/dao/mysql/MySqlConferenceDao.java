@@ -1,16 +1,18 @@
 package model.dao.mysql;
 
+import controller.manager.SqlStatementManager;
 import model.mapper.ConferenceDtoMapper;
 import model.mapper.ConferenceMapper;
 import model.mapper.SpeakerMapper;
 import model.mapper.SpeechMapper;
-import model.service.SourceEnum;
 import model.dao.ConnectionPool;
 import model.dao.ConferenceDao;
 import model.dto.ConferenceDto;
 import model.entity.Conference;
 import model.entity.Speaker;
 import model.entity.Speech;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -18,17 +20,17 @@ import java.util.*;
 
 public class MySqlConferenceDao implements ConferenceDao {
     private DataSource source = ConnectionPool.getDatasource();
-    private ResourceBundle resourceBundle = ResourceBundle.getBundle(SourceEnum.SQL_STATEMENT.getName());
     private ConferenceMapper conferenceMapper = new ConferenceMapper();
     private ConferenceDtoMapper conferenceDtoMapper = new ConferenceDtoMapper();
     private SpeakerMapper speakerMapper = new SpeakerMapper();
     private SpeechMapper speechMapper = new SpeechMapper();
+    private static final Logger LOGGER = LogManager.getLogger(MySqlConferenceDao.class);
     @Override
     public Conference getById(Long id) {
         List<Speech> speeches = new ArrayList<>();
         Conference conference = null;
         try(Connection connection = source.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement(resourceBundle.getString("conferenceGetById"));
+            PreparedStatement ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetById"));
             ps.setInt(1,id.intValue());
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
@@ -42,7 +44,7 @@ public class MySqlConferenceDao implements ConferenceDao {
             conference.setSpeeches(speeches);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return conference;
     }
@@ -75,7 +77,7 @@ public class MySqlConferenceDao implements ConferenceDao {
                 conferenceDtoList.add(conferenceDto);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return conferenceDtoList;
     }
