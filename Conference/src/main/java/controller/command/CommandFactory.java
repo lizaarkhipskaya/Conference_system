@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 public class CommandFactory {
     public Command getCommand(HttpServletRequest request){
         Command command = new DefaultCommand();
-        String commandName = request.getRequestURI().replaceAll(".*/guest*.|.*/admin*.|.*/speaker*.|.*/user*.|", "");
+        String commandName = request.getRequestURI().replaceAll(".*/app*.", "");
         System.out.println(commandName);
         try {
             command = CommandEnum.valueOf(commandName.toUpperCase()).getCommand();

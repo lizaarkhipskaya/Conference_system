@@ -1,17 +1,26 @@
 package model.dao.mysql;
 
-import model.dao.DaoFactory;
-import model.dao.DaoSpeech;
-import model.dao.DaoUser;
+import model.dao.*;
 
-public class MySqlDaoFactory implements DaoFactory {
+public class MySqlDaoFactory extends DaoFactory {
+
     @Override
-    public DaoUser getDaoUser() {
-        return new MySqlDaoUser();
+    public UserDao createUserDao() {
+        return new MySqlUserDao();
     }
 
     @Override
-    public DaoSpeech getDaoSpeaeh() {
-        return new MySqlDaoSpeech();
+    public SpeechDao createSpeechDao() {
+        return new MySqlSpeechDao();
+    }
+
+    @Override
+    public ConferenceDao createConferenceDao() {
+        return new MySqlConferenceDao();
+    }
+
+    @Override
+    public SpeakerDao createSpeakerDao() {
+        return new MySqlSpeakerDao();
     }
 }

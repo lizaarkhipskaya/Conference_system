@@ -3,6 +3,7 @@ package controller;
 import controller.command.CommandFactory;
 import controller.command.Command;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +31,13 @@ public class MainServlet extends HttpServlet {
             //LOG.trace("page with redirect: " + page);
             //LOG.trace("path after filtering: " + request.getContextPath() + page.replace("redirect:", ""));
             response.sendRedirect(request.getContextPath() + page.replace("redirect:", ""));
-            return;
         } else {
             //LOG.trace( "page" + page);
-            request.getRequestDispatcher(page).forward(request,response);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+// вызов страницы ответа на запрос
+            System.out.println("before forward dispatcher");
+            dispatcher.forward(request, response);
+            //request.getRequestDispatcher(page).forward(request,response);
         }
 
     }

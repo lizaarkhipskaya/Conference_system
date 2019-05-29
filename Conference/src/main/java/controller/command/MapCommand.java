@@ -11,8 +11,8 @@ public class MapCommand implements Command {
     }
     private enum MapEnum{
         SIGNUP("sign_up.jsp"),
-        SIGNIN("sign_in.jsp");
-
+        SIGNIN("sign_in.jsp"),
+        MAIN_PAGE("user_page.jsp");
         String pageName;
 
 

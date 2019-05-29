@@ -20,6 +20,31 @@ public enum CommandEnum {
         {
             this.command = new SignUpCommand();
         }
+    },
+    CONFERENCE_INFO{
+        {
+            this.command = new ConferenceInfoCommand();
+        }
+    },
+    CONFERENCE_LIST{
+        {
+            this.command = new GetConferenceList();
+        }
+    },
+    MAIN_PAGE{
+        {
+            this.command = new GetMainPageCommand();
+        }
+    },
+    ADD_SPEECH{
+        {
+            this.command = new AddSpeechCommand();
+        }
+    },
+    SPEAKER_LIST{
+        {
+            this.command = new GetSpeakerListCommand();
+        }
     };
 
     Command command;

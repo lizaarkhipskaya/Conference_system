@@ -5,11 +5,13 @@ import model.service.UserService;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class SignInCommand implements Command {
+    public static final ResourceBundle rs = ResourceBundle.getBundle("jsp_path");
     @Override
     public String execute(HttpServletRequest request) {
         String email = request.getParameter("email");
@@ -17,9 +19,12 @@ public class SignInCommand implements Command {
         UserService userService = new UserService();
         User user = userService.checkEmailPassword(email,password);
         if(user == null){
-            return "/WEB-INF/sign_in.jsp";
+            return "/WEB-INF/sign_in.jsp";//change
         }
-        System.out.println(user.toString());
-        return "redirect:"+"/WEB-INF/"+user.getRole().toString().toLowerCase()+"_main.jsp";
+        HttpSession httpSession = request.getSession();
+        httpSession.setAttribute("role",user.getRole().toString().toLowerCase());
+        httpSession.setAttribute("user",user);
+        ///System.out.println("redirect:/"+user.getRole().toString().toLowerCase()+rs.getString("page_main")+"?role="+user.getRole().toString().toLowerCase());
+        return "redirect:/"+"app/main_page";
     }
 }

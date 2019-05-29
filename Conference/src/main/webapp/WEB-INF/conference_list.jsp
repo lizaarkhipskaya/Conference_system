@@ -5,100 +5,82 @@
 
 
 <!DOCTYPE html>
-<!--
-Template Name: Mintos - Responsive Bootstrap 4 Admin Dashboard Template
-Author: Hencework
-Contact: https://hencework.ticksy.com/
-License: You must have a valid license purchased only from themeforest to legally use the template for your project.
--->
 
 <fmt:setLocale value="en_US" scope="session" />
 <fmt:setBundle basename="page_content" var="pc" />
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Mintos - SHARED ON THEMELOCK.COM  I Developer-friendly Admin Dashboard UI framework</title>
-    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+    <title></title>
+    <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-	<!-- Lightgallery CSS -->
-    <!--<link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"> -->
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+    <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css">
     <link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet" type="text/css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-</head>
-
-    <body data-spy="scroll" data-target=".navbar" data-offset="60">
-
-
-            <header class="header">
-                <div class="maincontainer">
-                   <c:import url="/WEB-INF/header.jsp" charEncoding="utf-8" />
-                </div>
-            </header>
-        <div class="about">
-              <div class="row">
-              <div class="col-md-2">
-                  <nav class="sidebar-sticky  navbar navbar-expand-md">
-
-
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
+    <header class="header">
+        <div class="maincontainer">
+            <c:import url="/WEB-INF/header.jsp" charEncoding="utf-8" />
+        </div>
+    </header>
+    <div class="about">
+        <div class="row">
+            <div class="col-md-3">
+                <nav class="sidebar-sticky  navbar navbar-expand-md">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav mr-auto flex-column text-center">
-                        <li class="nav-item active">
-                          <a href="" class="nav-link">Конференции</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="" class="nav-link">Проекты</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="" class="nav-link">Команда</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="" class="nav-link">Отзывы</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="" class="nav-link">Контакты</a>
-                        </li>
-                      </ul>
+                        <ul class="navbar-nav mr-auto flex-column text-center">
+                            <li class="nav-item active">
+                                <a href="" class="nav-link">Конференции</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Проекты</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Команда</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Отзывы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Контакты</a>
+                            </li>
+                        </ul>
                     </div>
-                  </nav>
-                <!-- end header -->
-                </div>
-                <main class="col-md-9">
-                  <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Название карточки</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                    </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Название карточки</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                    </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Название карточки</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                    </div>
-                  </div>
-                </main>
-                <!-- end main -->
-              </div>
+                </nav>
             </div>
-    </body>
+            <main class="col-md-9">
+                <div class="row">
+                    <c:forEach var="confInfo" items="${conferenceDtoList}">
+                        <div class="col-md-4">
+                            <div class="card  my-4 w-90">
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <h5><c:out value="${confInfo.theme}"/></h5>
+                                    </div>
+                                    <p class="card-text"><c:out value="${confInfo.date}"/></p>
+                                    <a href="/user/conference_info?id=${confInfo.id}" class="btn btn-outline-secondary">See more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <div class="container">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 </html>

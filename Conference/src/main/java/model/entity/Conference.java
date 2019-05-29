@@ -1,16 +1,16 @@
 package model.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
+@Builder
 public class Conference {
     private long id;
-    private Date date;
+    private Timestamp date;
     private String theme;
     private List<Speech> speeches;
-    private List<Speaker> speakers;
-
 }
