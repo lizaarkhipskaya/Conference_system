@@ -68,7 +68,7 @@ public class MySqlConferenceDao implements ConferenceDao {
         List<ConferenceDto> conferenceDtoList = new ArrayList<>();
         try(Connection connection = source.getConnection()) {
             PreparedStatement ps = null;
-                ps = connection.prepareStatement(resourceBundle.getString("conferenceGetUpcoming"));
+                ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetUpcoming"));
                 ps.setInt(1, counter*confNumberInOnePage);
                 ps.setInt(2, confNumberInOnePage);
             ResultSet rs = ps.executeQuery();

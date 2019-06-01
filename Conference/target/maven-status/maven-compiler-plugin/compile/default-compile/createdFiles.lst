@@ -1,10 +1,12 @@
 model\dao\mysql\MySqlConferenceDao.class
 model\entity\Speaker.class
 controller\command\CommandEnum$5.class
+controller\manager\PathManager.class
 controller\command\SignUpCommand$1.class
-model\service\SourceEnum$2.class
+controller\command\SignOut.class
 controller\command\CommandEnum$1.class
 controller\command\SignUpCommand$Validator.class
+controller\manager\ContentManager.class
 controller\command\SignUpCommand.class
 model\mapper\SpeakerMapper.class
 controller\command\CommandEnum$8.class
@@ -38,6 +40,7 @@ controller\command\DefaultCommand.class
 controller\command\CommandEnum$3.class
 model\dto\ConferenceDto.class
 model\entity\User$Builder.class
+controller\listener\SessionListener.class
 controller\command\SignUpCommand$ValidationEnum$4.class
 model\entity\Speech.class
 model\entity\User$1.class
@@ -47,14 +50,14 @@ controller\MainServlet.class
 model\dto\ConferenceDto$ConferenceDtoBuilder.class
 model\entity\Speech$SpeechBuilder.class
 model\dao\mysql\MySqlSpeechDao.class
-model\service\SourceEnum$1.class
 controller\command\CommandEnum$6.class
 controller\command\MapCommand.class
 model\entity\Conference$ConferenceBuilder.class
-model\service\SourceEnum.class
 controller\command\CommandEnum$4.class
 controller\command\SignUpCommand$ValidationEnum.class
 model\entity\Speaker$SpeakerBuilder.class
+controller\command\ChangeLanguageCommand.class
+controller\command\CommandEnum$10.class
 controller\command\SignUpCommand$ValidationEnum$3.class
 model\service\UserService.class
 controller\command\ConferenceInfoCommand.class
@@ -64,6 +67,7 @@ model\mapper\SpeechMapper.class
 controller\command\MapCommand$MapEnum.class
 controller\command\CommandEnum$7.class
 model\dao\DaoFactory.class
+controller\manager\SqlStatementManager.class
 model\dao\ConferenceDao.class
 model\entity\Conference.class
 model\service\ConferenceService.class

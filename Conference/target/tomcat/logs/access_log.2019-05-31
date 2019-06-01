@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [31/May/2019:17:48:19 +0300] "GET / HTTP/1.1" 200 4067 http-bio-8080-exec-1 1415
+0:0:0:0:0:0:0:1 - - [31/May/2019:17:48:19 +0300] "GET /resources/resources/img/bg_index.jpg HTTP/1.1" 404 1023 http-bio-8080-exec-2 4
+0:0:0:0:0:0:0:1 - - [31/May/2019:17:48:24 +0300] "GET /app/change_language?locale=en HTTP/1.1" 302 - http-bio-8080-exec-3 405
+0:0:0:0:0:0:0:1 - - [31/May/2019:17:48:24 +0300] "GET /app/null HTTP/1.1" 500 1551 http-bio-8080-exec-4 15

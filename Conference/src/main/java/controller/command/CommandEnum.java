@@ -45,6 +45,11 @@ public enum CommandEnum {
         {
             this.command = new GetSpeakerListCommand();
         }
+    },
+    CHANGE_LANGUAGE{
+        {
+            this.command = new ChangeLanguageCommand();
+        }
     };
 
     Command command;

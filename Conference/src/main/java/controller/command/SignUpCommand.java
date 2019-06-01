@@ -19,7 +19,7 @@ public class SignUpCommand implements Command {
             UserService userService = new UserService();
             User user = userService.addUser(parameters);
             request.getSession().setAttribute("user",user);
-            return  "redirect:"+ PathManager.getProperty("main_page");
+            return  "redirect:"+ PathManager.getProperty("sign_in");
         }
         request.setAttribute("correctParameters",getCorrectParameters(parameters,request));
         return PathManager.getProperty("sign_up");
