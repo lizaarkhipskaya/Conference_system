@@ -14,6 +14,7 @@ public class ConferenceMapper implements Mapper<Conference, ResultSet> {
                 .id(Long.valueOf(resultSet.getString("conference_id")))
                 .date(Timestamp.valueOf(resultSet.getString("date")))
                 .theme(resultSet.getString("conference_theme"))
+                .numberOfAttendees(resultSet.getInt("num_of_attendees"))
                 .build();
     }
 }

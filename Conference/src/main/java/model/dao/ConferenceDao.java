@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ConferenceDao extends EntityDao<Conference, Long> {
     List<ConferenceDto> getComingUp(int counter, int confNumberInOnePage);
+
+    List<ConferenceDto> getTodayConferenceList();
+
+    List<ConferenceDto> getPast(int counter, int confNumberInOnePage);
 }

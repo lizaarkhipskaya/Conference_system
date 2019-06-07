@@ -14,21 +14,30 @@ public class SignUpCommand implements Command {
 
         Map<String, String[]> parametersFromRequest = request.getParameterMap();
         Map<String,String> parameters = getAllParameters(parametersFromRequest);
-
-        if(allParamCorrect(parameters)||checkConfirmPassword(parameters)){
-            UserService userService = new UserService();
-            User user = userService.addUser(parameters);
-            request.getSession().setAttribute("user",user);
-            return  "redirect:"+ PathManager.getProperty("sign_in");
+        parameters.forEach((k,v) -> System.out.println(k+ " "+v));
+        if(allParamCorrect(parameters)){
+            if(checkConfirmPassword(parameters)) {
+                UserService userService = new UserService();
+                User user = userService.addUser(parameters);
+                request.getSession().setAttribute("user", user);
+                return "redirect:" + PathManager.getProperty("map_sign_in");
+            }
         }
+        getCorrectParameters(parameters,request).forEach((k,v)-> System.out.println("correct  "+k +" "+ v));
         request.setAttribute("correctParameters",getCorrectParameters(parameters,request));
         return PathManager.getProperty("sign_up");
     }
 
     public  Map<String,String> getAllParameters(Map<String, String[]> parametersFromRequest){
         Map<String,String> parameters = new HashMap<>();
-        parametersFromRequest.entrySet().stream()
-                .map(x -> parameters.put(x.getKey(),x.getValue()[0] ));
+        for(ValidationEnum v:ValidationEnum.values()){
+            if(parametersFromRequest.containsKey(v.toString().toLowerCase())){
+                parameters.put(v.toString().toLowerCase(),parametersFromRequest.get(v.toString().toLowerCase())[0]);
+            }
+            else
+                parameters.put(v.toString().toLowerCase(),null);
+
+        }
         return  parameters;
     }
 
@@ -53,14 +62,9 @@ public class SignUpCommand implements Command {
         return  corectParameters;
     }
     public boolean allParamCorrect(Map<String, String> parameters){
-        String key, value;
-        for (Map.Entry<String, String> entry:
-                parameters.entrySet()) {
-            key = entry.getKey();
-            value = entry.getValue();
-            if(ValidationEnum.valueOf(key.toUpperCase()).validator.validate(value)) {
+        for (Map.Entry<String,String> e: parameters.entrySet()){
+            if(!ValidationEnum.valueOf(e.getKey().toUpperCase()).getValidator().validate(e.getValue()))
                 return false;
-            }
         }
         return true;
     }
@@ -75,19 +79,19 @@ public class SignUpCommand implements Command {
                 this.validator = (e) -> e!=null && e!="" && e.length()>6;
             }
         },
-        NAME{
+        FIRST_NAME{
             {
                 this.validator = (e) -> e!=null && e!="" && e.matches("[а-яА-Я- ]+");
             }
         },
-        SURNAME{
+        LAST_NAME{
             {
                 this.validator = (e) -> e!=null && e!=""&& e.matches("[а-яА-Я- ]+");
             }
         },
         CONFIRM_PASSWORD{
             {
-                this.validator = (e) -> e!=null && e!="";
+                this.validator = (e) -> e!=null && e!="" && e.length()>6;
             }
         },
         ROLE{

@@ -11,7 +11,7 @@ public class CommandFactory {
     public Command getCommand(HttpServletRequest request){
         Command command = new DefaultCommand();
         String commandName = request.getRequestURI().replaceAll(".*/app*.", "");
-        System.out.println(commandName);
+        System.out.println("command name"+commandName);
         try {
             command = CommandEnum.valueOf(commandName.toUpperCase()).getCommand();
         }catch (IllegalArgumentException e){

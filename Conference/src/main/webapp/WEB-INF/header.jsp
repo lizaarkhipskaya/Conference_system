@@ -1,3 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<fmt:setBundle basename="page_content"/>
+<fmt:setLocale value="${locale}" scope="session" />
+
 <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top ">
         <a class="navbar-brand" href="#">Home</a>
@@ -7,31 +15,36 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-4">
                 <li class="nav-item">
-                    <a class="nav-link" data-value="about" href="#">About</a>
+                    <a class="nav-link" data-value="about" href="#"><fmt:message key="header.link.about"/></a>
                 </li>
                 <li class="nav-item">
                     <c:choose>
-                        <c:when ${locale}="en_US">
-                            <a class="nav-link" data-value="about" href="/app/change_language?locale=ru">Русский</a>
+
+                        <c:when test="${sessionScope.locale=='en'}">
+                            <a class="nav-link" data-value="about" href="/app/change_language?locale=ru_RU"><fmt:message key="header.link.language"/></a>
                         </c:when>
                         <c:otherwise>
-                            <a class="nav-link" data-value="about" href="/app/change_language?locale=en">English</a>
+                            <a class="nav-link" data-value="about" href="/app/change_language?locale=en"><fmt:message key="header.link.language"/></a>
                         </c:otherwise>
                     </c:choose>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <c:if test="${empty user}">
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/app/map?source=signup">Sign up</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/app/map?source=signin">Sign in</a>
-                        </div>
-                    </c:if>
-                    <c:if test="${not empty user}">
-                        <a class="nav-link " data-value="team" href="#">Log out</a>
-                    </c:if>
-                  </li>
+                <c:choose>
+                    <c:when test="${empty user}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><fmt:message key="header.link.sign_in"/></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/app/map?source=sign_up"><fmt:message key="header.link.sign_up"/></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/app/map?source=sign_in"><fmt:message key="header.link.sign_in"/></a>
+                                </div>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link " data-value="team" href="/app/sign_out">Sign out</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </nav>

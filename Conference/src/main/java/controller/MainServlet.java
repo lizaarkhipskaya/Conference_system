@@ -15,11 +15,11 @@ import java.io.IOException;
 
 public class MainServlet extends HttpServlet {
     private final static Logger LOGGER = LogManager.getLogger(MainServlet.class);
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

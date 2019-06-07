@@ -13,4 +13,5 @@ public class ConferenceDto {
     private long id;
     private Timestamp date;
     private String theme;
+    private int numberOfAttendees;
 }

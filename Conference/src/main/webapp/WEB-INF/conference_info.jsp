@@ -1,14 +1,14 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
+<fmt:setBundle basename="page_content"/>
+<fmt:setLocale value="${locale}" scope="session" />
+
+
 <!DOCTYPE html>
 
-
-<fmt:setLocale value="en_US" scope="session" />
-<fmt:setBundle basename="page_content" var="pc" />
 <html>
 
 <head>
@@ -28,26 +28,12 @@
     </header>
     <div class="about">
         <div class="row">
-            <div class="col-md-2">
-                <nav class="sidebar-sticky  navbar navbar-expand-md">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto flex-column text-center">
-                            <li class="nav-item active">
-                                <a href="" class="nav-link">Предстоящие конференции</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">Конференции сегодня </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">Рейтинг спикеров</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">Пользователи</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+            <c:if test="${empty user}">
+                <c:redirect url="/index.jsp"/>
+            </c:if>
+            <c:if test="${not empty user}">
+                <c:import url="/WEB-INF/${role}/menu.jsp" charEncoding="utf-8" />
+            </c:if>
             <main class="col-md-9">
                 <h1><c:out value="${conference.theme}"/></h1>
                 <p><c:out value="${conference.date}"/></p>
@@ -55,16 +41,42 @@
                     <c:forEach var="speech" items="${conference.speeches}">
                         <div class="col-md-6">
                             <h2><c:out value="${speech.theme}"/></h2>
-                            <p><c:out value="${speech.speaker.name} ${speech.speaker.sureName}"/></p>
+                            <p><c:out value="${speech.speaker.name} ${speech.speaker.surname}"/></p>
                             <p><c:out value=""/></p>
                         </div>
+                        <c:if test="${role}==moderator">
                         <div class="col-md-6">
-                            <c:url=""><button class="btn primary">Редактировать тему</button></c:url>
+                            <button class="btn primary">Редактировать тему</button>
                             <button class="btn primary">Предложить новую</button>
                             <button class="btn primary">edit</button>
                         </div>
+                        </c:if>
                     </c:forEach>
                 </div>
+                <c:if test="${not empty reregistration}">
+                    <h3 text="danger" >${reregistration}</h3>
+                </c:if>
+                <c:if test="${empty reregistration}">
+                <a href="#"  id="bd" data-toggle="modal" data-target="#exampleModal">Зарегистрироваться</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Подтверждение регистрации</h5>
+                        </div>
+                        <div class="modal-body">
+                        <c:if test="${empty reregistration}">
+                          <a href="/app/registration_on_conference?id=${conference.id}"><button class="btn primary">Зарегистрироваться</button></a>
+                          <!--<button class="close" type="button" data-dismiss="modal" aria-label="close">Отмена</button>-->
+                        </c:if>
+                        <c:if test="${not empty reregistration}">
+                          <h3 text="danger" >${reregistration}</h3>
+                        </c:if>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </c:if>
             </main>
         </div>
     </div>

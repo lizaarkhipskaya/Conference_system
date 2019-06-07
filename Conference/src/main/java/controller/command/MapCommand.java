@@ -11,8 +11,8 @@ public class MapCommand implements Command {//check how to change!!!!!!!!!!
         return MapEnum.valueOf(page.toUpperCase()).getPageName();
     }
     private enum MapEnum{
-        SIGNUP(PathManager.getProperty("sign_up")),
-        SIGNIN(PathManager.getProperty("sign_in"));
+        SIGN_UP(PathManager.getProperty("sign_up")),
+        SIGN_IN(PathManager.getProperty("sign_in"));
         String pageName;
 
 

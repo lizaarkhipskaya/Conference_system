@@ -13,6 +13,7 @@ public class ConferenceDtoMapper implements Mapper<ConferenceDto, ResultSet> {
                 .id(Long.valueOf(rs.getString("id")))
                 .date(Timestamp.valueOf(rs.getString("date")))
                 .theme(rs.getString("theme"))
+                .numberOfAttendees(rs.getInt("num_of_attendees"))
                 .build();
     }
 }

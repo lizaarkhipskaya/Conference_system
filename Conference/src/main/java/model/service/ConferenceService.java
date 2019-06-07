@@ -13,9 +13,15 @@ public class ConferenceService {
     public List<ConferenceDto> getConferenceComingUp(int counter, int confNumberInOnePage){
         return conferenceDao.getComingUp(counter,confNumberInOnePage);
     }
+    public List<ConferenceDto> getTodayConferenceList(){
+        return conferenceDao.getTodayConferenceList();
+    }
     public Conference getById(long id){
         return conferenceDao.getById(id);
     }
 
 
+    public List<ConferenceDto> getPastConferenceList(int counter, int confNumberInOnePage) {
+        return conferenceDao.getPast(counter,confNumberInOnePage);
+    }
 }

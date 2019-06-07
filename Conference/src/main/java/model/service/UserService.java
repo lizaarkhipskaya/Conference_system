@@ -1,9 +1,12 @@
 package model.service;
 
+import controller.command.RegistrationOnConferenceCommand;
 import model.dao.UserDao;
 import model.dao.mysql.MySqlDaoFactory;
 import model.dao.mysql.MySqlUserDao;
+import model.entity.Conference;
 import model.entity.User;
+import model.exeption.ReRegisterOnConferenceExeption;
 
 import java.util.Map;
 
@@ -17,12 +20,15 @@ public class UserService {
                 .setRole(User.Role.valueOf(parameters.get("role").toUpperCase()))
                 .setPassword(parameters.get("password"))
                 .setEmail(parameters.get("email"))
-                .setName(parameters.get("name"))
-                .setSurname(parameters.get("surname"))
+                .setName(parameters.get("first_name"))
+                .setSurname(parameters.get("last_name"))
                 .build();
         long id = userDao.insert(user);
         user.setId(id);
         return user;
+    }
+    public boolean registerOnConference(User user, long id) throws ReRegisterOnConferenceExeption {
+        return userDao.registrateOnConference(user,id);
     }
 
 }

@@ -13,4 +13,5 @@ public class Conference {
     private Timestamp date;
     private String theme;
     private List<Speech> speeches;
+    private int numberOfAttendees;
 }

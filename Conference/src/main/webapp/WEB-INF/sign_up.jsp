@@ -29,47 +29,47 @@
                 <form class="form" action="/app/sign_up" method="post" style="font-size: 1rem;">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="${correctParameters['name']}" name="name" />
-                            <p class="text-danger"><c:out value="${incorrect_name}"/></p>
+                            <input type="text" class="form-control" value="${correctParameters['first_name']}" name="first_name" placeholder="<fmt:message key='sign_up.placeholder.first_name'/>"/>
+                            <p class="text-danger">${incorrect_first_name}</p>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="${correctParameters['surname']}" name="surname"  />
-                            <p class="text-danger"><c:out value="${incorrect_surname}"/></p>
+                            <input type="text" class="form-control" value="${correctParameters['last_name']}" name="last_name" placeholder="<fmt:message key='sign_up.placeholder.last_name'/>" />
+                            <p class="text-danger">${incorrect_last_name}</p>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="email" name="email" value="${correctParameters['email']}" class="form-control"  />
-                            <p class="text-danger"><c:out value="${incorrect_email}"/></p>
+                            <input type="email" name="email" value="${correctParameters['email']}" class="form-control"  placeholder="<fmt:message key='sign_up.placeholder.email'/>" />
+                            <p class="text-danger">${incorrect_email}</p>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control" value=""  />
+                            <input type="password" name="password" class="form-control" value=" "  placeholder="<fmt:message key='sign_up.placeholder.password'/>"/>
                             <p class="text-danger">${incorrect_password}</p>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="password" name="confirm_password" class="form-control" value=""   />
+                            <input type="password" name="confirm_password" class="form-control" value=" "  placeholder="<fmt:message key='sign_up.placeholder.confirm_password'/>" />
                             <p class="text-danger"><c:out value="${incorrect_confirm_password}"/></p>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <select class="form-control" name="role" id="exampleFormControlSelect1">
-                                <option><fmt:message key='login.placeholder.speaker'/></option>
-                                <option><fmt:message key='login.placeholder.listener'/></option>
+                                <option id="exampleFormControlSelect1" value="speaker"><fmt:message key='sign_up.placeholder.speaker'/></option>
+                                <option id="exampleFormControlSelect1" value="listener"><fmt:message key='sign_up.placeholder.listener'/></option>
                             </select>
                         </div>
                     </div>
                     <div class="text-center col-md-12">
-                        <input type="submit"  value="<fmt:message key='login.placeholder.submit'/>" />
+                        <input type="submit"  value="<fmt:message key='sign_up.placeholder.submit'/>" />
                     </div>
                 </form>
-            <a  href="${pageContext.request.contextPath}/guest/map?source=signin"><span><fmt:message key='login.label.sign_in'/></span></a>
+            <a  href="${pageContext.request.contextPath}/app/map?source=sign_in"><span><fmt:message key='login.label.sign_in'/></span></a>
         </div>
     </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

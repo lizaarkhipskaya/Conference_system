@@ -30,20 +30,20 @@
             <form class="form" action="/app/sign_in">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="<fmt:message key='login.placeholder.email'/>" />
+                        <input type="email" name="email" class="form-control" placeholder="<fmt:message key='sign_in.placeholder.email'/>" />
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="<fmt:message key='login.placeholder.password'/>"/>
+                        <input type="password" name="password" class="form-control" placeholder="<fmt:message key='sign_in.placeholder.password'/>"/>
                     </div>
                 </div>
                 <div class="text-center col-md-12">
-                    <input type="submit"  value="<fmt:message key='login.placeholder.submit'/>" />
+                    <input type="submit"  value="<fmt:message key='sign_in.label.submit'/>" />
                 </div>
             </form>
-            <form action="/guest/map?source=signup">
-                <input type="submit" class="btn btn-default" value="<fmt:message key='login.label.sign_up'/>"   />
+            <form action="/app/sign_in">
+                <input type="submit" class="btn btn-default" value="<fmt:message key='sign_in.label.sign_up'/>"   />
             </form>
         </div>
     </div>

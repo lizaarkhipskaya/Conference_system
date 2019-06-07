@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class MySqlSpeakerDao implements SpeakerDao {
     private DataSource source = ConnectionPool.getDatasource();
@@ -23,7 +22,7 @@ public class MySqlSpeakerDao implements SpeakerDao {
         List<Speaker> speakerList = new ArrayList<>();
         Speaker speaker = null;
         try(Connection connection = source.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SqlStatementManager.getProperty("speaker.getSpeakers"));
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlStatementManager.getProperty("speakerGetSpeakers"));
             preparedStatement.setInt(1,limit);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){

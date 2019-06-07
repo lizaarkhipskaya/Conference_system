@@ -1,11 +1,11 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 
-<fmt:setLocale value="en_US" scope="session" />
-<fmt:setBundle basename="page_content" var="pc" />
+
+<fmt:setBundle basename="page_content"/>
+<fmt:setLocale value="${locale}" scope="session" />
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -27,7 +27,12 @@
     </header>
     <div class="about">
         <div class="row">
-            <c:import url="/WEB-INF/${role}/menu.jsp" charEncoding="utf-8" />
+            <c:if test="${empty user}">
+                <c:redirect url="/index.jsp"/>
+            </c:if>
+            <c:if test="${not empty user}">
+                <c:import url="/WEB-INF/${role}/menu.jsp" charEncoding="utf-8" />
+            </c:if>
             <main class="col-md-9">
             <div class="row">
                 <c:import url="/WEB-INF/${role}/profile.jsp" charEncoding="utf-8" />

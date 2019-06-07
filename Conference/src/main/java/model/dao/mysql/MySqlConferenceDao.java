@@ -34,6 +34,7 @@ public class MySqlConferenceDao implements ConferenceDao {
             ps.setInt(1,id.intValue());
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
+                System.out.println(resultSet.getString("name"));
                 Speaker speaker = speakerMapper.mapToObject(resultSet);
                 Speech speech = speechMapper.mapToObject(resultSet);
                 speech.setSpeaker(speaker);
@@ -71,6 +72,42 @@ public class MySqlConferenceDao implements ConferenceDao {
                 ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetUpcoming"));
                 ps.setInt(1, counter*confNumberInOnePage);
                 ps.setInt(2, confNumberInOnePage);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                ConferenceDto conferenceDto = conferenceDtoMapper.mapToObject(rs);
+                conferenceDtoList.add(conferenceDto);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return conferenceDtoList;
+    }
+
+    @Override
+    public List<ConferenceDto> getTodayConferenceList() {
+        List<ConferenceDto> conferenceDtoList = new ArrayList<>();
+        try(Connection connection = source.getConnection()) {
+            PreparedStatement statement = null;
+            statement = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetToday"));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                ConferenceDto conferenceDto = conferenceDtoMapper.mapToObject(rs);
+                conferenceDtoList.add(conferenceDto);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return conferenceDtoList;
+    }
+
+    @Override
+    public List<ConferenceDto> getPast(int counter, int confNumberInOnePage) {
+        List<ConferenceDto> conferenceDtoList = new ArrayList<>();
+        try(Connection connection = source.getConnection()) {
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetPast"));
+            ps.setInt(1, counter*confNumberInOnePage);
+            ps.setInt(2, confNumberInOnePage);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 ConferenceDto conferenceDto = conferenceDtoMapper.mapToObject(rs);

@@ -26,9 +26,9 @@ public enum CommandEnum {
             this.command = new ConferenceInfoCommand();
         }
     },
-    CONFERENCE_LIST{
+    UP_COMING_CONFERENCES {
         {
-            this.command = new GetConferenceList();
+            this.command = new GetUpComingConferenceList();
         }
     },
     MAIN_PAGE{
@@ -50,7 +50,29 @@ public enum CommandEnum {
         {
             this.command = new ChangeLanguageCommand();
         }
-    };
+    },
+    SIGN_OUT{
+        {
+            this.command = new SignOutCommand();
+        }
+    },
+    REGISTRATION_ON_CONFERENCE{
+        {
+            this.command = new RegistrationOnConferenceCommand();
+        }
+    },
+    TODAY_CONFERENCES{
+        {
+            this.command = new GetTodayConferenceList();
+        }
+    },
+    PAST_CONFERENCES{
+        {
+            this.command = new GetPastConferenceList();
+        }
+    }
+;
+
 
     Command command;
 

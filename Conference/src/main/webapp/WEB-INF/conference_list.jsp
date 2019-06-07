@@ -1,13 +1,13 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<!DOCTYPE html>
+<fmt:setBundle basename="page_content"/>
+<fmt:setLocale value="${locale}" scope="session" />
 
-<fmt:setLocale value="en_US" scope="session" />
-<fmt:setBundle basename="page_content" var="pc" />
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -28,29 +28,12 @@
     </header>
     <div class="about">
         <div class="row">
-            <div class="col-md-3">
-                <nav class="sidebar-sticky  navbar navbar-expand-md">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto flex-column text-center">
-                            <li class="nav-item active">
-                                <a href="" class="nav-link">Конференции</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">Проекты</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">Команда</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">Отзывы</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">Контакты</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+            <c:if test="${empty user}">
+                <c:redirect url="/index.jsp"/>
+            </c:if>
+            <c:if test="${not empty user}">
+                <c:import url="/WEB-INF/${role}/menu.jsp" charEncoding="utf-8" />
+            </c:if>
             <main class="col-md-9">
                 <div class="row">
                     <c:forEach var="confInfo" items="${conferenceDtoList}">
@@ -61,7 +44,10 @@
                                         <h5><c:out value="${confInfo.theme}"/></h5>
                                     </div>
                                     <p class="card-text"><c:out value="${confInfo.date}"/></p>
-                                    <a href="/user/conference_info?id=${confInfo.id}" class="btn btn-outline-secondary">See more</a>
+                                    <c:if test="${confInfo.numberOfAttendees > 0}">
+                                        <p class="card-text">Присутствовало :<c:out value="${confInfo.numberOfAttendees}"/></p>
+                                    </c:if>
+                                    <a href="/app/conference_info?id=${confInfo.id}" class="btn btn-outline-secondary">See more</a>
                                 </div>
                             </div>
                         </div>
