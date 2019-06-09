@@ -8,6 +8,7 @@
 
 <fmt:setLocale value="ru_RU" />
 <fmt:setBundle basename="page_content"/>
+
 <html>
 
 <head>
@@ -27,6 +28,7 @@
         <div class="myForm bg-light">
             <h3 class="text-center">Well Style Blue</h3>
                 <form class="form" action="/app/sign_up" method="post" style="font-size: 1rem;">
+                <h1>${reregistrationUser}</h1>
                     <div class="col-md-12">
                         <div class="form-group">
                             <input type="text" class="form-control" value="${correctParameters['first_name']}" name="first_name" placeholder="<fmt:message key='sign_up.placeholder.first_name'/>"/>

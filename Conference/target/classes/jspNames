@@ -1,9 +1,0 @@
-signin = /WEB-INF/sign_in.jsp
-signup = /WEB-INF/sign_up.jsp
-user_main = /WEB-INF/user_main.jsp
-moderator_main = /WEB-INF/moderator_main.jsp
-admin_main = /WEB-INF/admin_main.jsp
-speaker_main = /WEB-INF/speaker_main.jsp
-
-
-

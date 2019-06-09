@@ -3,10 +3,13 @@ package model.dao.mysql;
 import controller.command.RegistrationOnConferenceCommand;
 import controller.manager.SqlStatementManager;
 import model.exeption.ReRegisterOnConferenceExeption;
+import model.exeption.ReRegisterUserExeption;
+import model.mapper.SpeakerMapper;
 import model.mapper.UserMapper;
 import model.dao.ConnectionPool;
 import model.dao.UserDao;
 import model.entity.User;
+import model.service.SpeakerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +23,7 @@ public class MySqlUserDao implements UserDao {
 
     private  DataSource source = ConnectionPool.getDatasource();
     private UserMapper userMapper = new UserMapper();
+    private SpeakerMapper speakerMapper = new SpeakerMapper();
 
     @Override
     public boolean registrateOnConference(User user, long id) throws ReRegisterOnConferenceExeption {
@@ -42,11 +46,17 @@ public class MySqlUserDao implements UserDao {
         User user = null;
         try(Connection connection = source.getConnection()){
             PreparedStatement ps = connection.prepareStatement(SqlStatementManager.getProperty("userGetByEmailPassword"));
-            System.out.println(email+" "+password);
             ps.setString(1,email);
             ps.setString(2,password);
             ResultSet rs = ps.executeQuery();
             rs.next();
+            if(rs.getString("role").equals("speaker")){
+
+                System.out.println("speaker");
+                System.out.println(rs.getInt("id"));
+
+                return new SpeakerService().getById(rs.getInt("id"));
+            }
             user = userMapper.mapToObject(rs);
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -59,7 +69,7 @@ public class MySqlUserDao implements UserDao {
     }
 
     @Override
-    public Long insert(User user) {
+    public Long insert(User user) throws ReRegisterUserExeption {
         Long id = null;
         try(Connection con = ConnectionPool.getDatasource().getConnection()){
             PreparedStatement st = con.prepareStatement(SqlStatementManager.getProperty("userInsert"),java.sql.Statement.RETURN_GENERATED_KEYS);
@@ -76,6 +86,8 @@ public class MySqlUserDao implements UserDao {
             }
         }catch (SQLException e){
             LOGGER.error(e);
+            if(e.getErrorCode() == 1062||e.getMessage().contains("Duplicate entry"))
+                throw new ReRegisterUserExeption();
         }
         return id;
     }

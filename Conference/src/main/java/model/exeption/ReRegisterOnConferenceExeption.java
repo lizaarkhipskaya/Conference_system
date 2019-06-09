@@ -1,4 +1,4 @@
 package model.exeption;
 
-public class ReRegisterOnConferenceExeption extends Throwable{
+public class ReRegisterOnConferenceExeption extends ReRegisterExeption{
 }

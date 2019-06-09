@@ -11,6 +11,6 @@ import java.sql.Time;
 public class Speech {
     private long id;
     private Speaker speaker;
+    private long idConference;
     private String theme;
-    private Time time;
 }

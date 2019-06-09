@@ -1,6 +1,0 @@
-0:0:0:0:0:0:0:1 - - [29/May/2019:13:06:24 +0300] "GET /app/map?source=signin HTTP/1.1" 200 3655 http-bio-8080-exec-1 1470
-0:0:0:0:0:0:0:1 - - [29/May/2019:13:06:38 +0300] "GET /app/sign_in?email=li%40gmail.com&password=pas HTTP/1.1" 302 - http-bio-8080-exec-2 643
-0:0:0:0:0:0:0:1 - - [29/May/2019:13:06:38 +0300] "GET /app/main_page HTTP/1.1" 200 4828 http-bio-8080-exec-3 501
-0:0:0:0:0:0:0:1 - - [29/May/2019:14:29:52 +0300] "GET /app/main_page HTTP/1.1" 500 5403 http-bio-8080-exec-5 391
-0:0:0:0:0:0:0:1 - - [29/May/2019:14:29:58 +0300] "GET / HTTP/1.1" 200 4047 http-bio-8080-exec-6 215
-0:0:0:0:0:0:0:1 - - [29/May/2019:14:30:06 +0300] "GET /sign_in.jsp HTTP/1.1" 500 4404 http-bio-8080-exec-8 249

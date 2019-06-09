@@ -9,7 +9,12 @@ import java.util.List;
 
 public class SpeakerService {
     private SpeakerDao speakerDao = MySqlDaoFactory.getInstance().createSpeakerDao();
+
     public List<Speaker> getSpeakers(int limit){
         return speakerDao.getSpeakers(limit);
+    }
+
+    public Speaker getById(long id){
+        return speakerDao.getById(id);
     }
 }

@@ -3,12 +3,17 @@ package controller.command;
 import controller.manager.ContentManager;
 import controller.manager.PathManager;
 import model.entity.User;
+import model.exeption.ReRegisterExeption;
+import model.exeption.ReRegisterUserExeption;
 import model.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 public class SignUpCommand implements Command {
+    private static final Logger LOGGER = LogManager.getLogger(SignUpCommand.class);
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -18,7 +23,16 @@ public class SignUpCommand implements Command {
         if(allParamCorrect(parameters)){
             if(checkConfirmPassword(parameters)) {
                 UserService userService = new UserService();
-                User user = userService.addUser(parameters);
+                User user = null;
+                try {
+                    user = userService.addUser(parameters);
+                } catch (ReRegisterUserExeption reRegisterUserExeption) {
+                    LOGGER.warn("user "+parameters.get("email")+"tried to re-register");
+                    request.setAttribute("reregistrationUser",ContentManager.getLocalizedContent("reregistrationUser",Locale.getDefault()));//REFACTOR LOCALE
+                    return PathManager.getProperty("sign_up");
+                } catch (ReRegisterExeption reRegisterExeption) {
+                    LOGGER.warn(reRegisterExeption);
+                }
                 request.getSession().setAttribute("user", user);
                 return "redirect:" + PathManager.getProperty("map_sign_in");
             }

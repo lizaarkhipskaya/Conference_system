@@ -37,7 +37,18 @@ public class MySqlSpeakerDao implements SpeakerDao {
 
     @Override
     public Speaker getById(Long id) {
-        return null;
+        Speaker speaker = null;
+        try(Connection connection = source.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlStatementManager.getProperty("speakerGetById"));
+            preparedStatement.setInt(1,id.intValue());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            speaker = speakerMapper.mapToObjectWithAllParams(resultSet);
+
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return speaker;
     }
 
     @Override

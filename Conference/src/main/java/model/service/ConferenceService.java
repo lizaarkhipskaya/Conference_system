@@ -24,4 +24,8 @@ public class ConferenceService {
     public List<ConferenceDto> getPastConferenceList(int counter, int confNumberInOnePage) {
         return conferenceDao.getPast(counter,confNumberInOnePage);
     }
+
+    public List<ConferenceDto> getConferenceForSpeech() {
+        return  conferenceDao.getConferencesForSpeech();
+    }
 }

@@ -119,4 +119,21 @@ public class MySqlConferenceDao implements ConferenceDao {
         return conferenceDtoList;
     }
 
+    @Override
+    public List<ConferenceDto> getConferencesForSpeech() {
+        List<ConferenceDto> conferenceDtoList = new ArrayList<>();
+        try(Connection connection = source.getConnection()) {
+            PreparedStatement statement = null;
+            statement = connection.prepareStatement(SqlStatementManager.getProperty("conferencesForSpeech"));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                ConferenceDto conferenceDto = conferenceDtoMapper.mapToObject(rs);
+                conferenceDtoList.add(conferenceDto);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return conferenceDtoList;
+    }
+
 }

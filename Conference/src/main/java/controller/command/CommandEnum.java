@@ -70,6 +70,16 @@ public enum CommandEnum {
         {
             this.command = new GetPastConferenceList();
         }
+    },
+    ADD_CONFERENCE{
+        {
+            this.command = new AddConferenceCommand();
+        }
+    },
+    WEEK_CONFERENCES{
+        {
+            this.command = new GetWeekConferencesCommand();
+        }
     }
 ;
 

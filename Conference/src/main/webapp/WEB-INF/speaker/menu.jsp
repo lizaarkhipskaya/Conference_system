@@ -10,7 +10,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto flex-column text-center">
                             <li class="nav-item">
-                                <a href="/app/speaker_profile" class="nav-link">Мой кабинет</a>
+                                <a href="/app/main_page" class="nav-link">Мой кабинет</a>
                             </li>
                             <li class="nav-item active">
                                 <a href="/app/today_conferences" class="nav-link">Конференции сегодня</a>

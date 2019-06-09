@@ -1,6 +1,7 @@
 package controller.command;
 
 import controller.manager.PathManager;
+import model.entity.Speaker;
 import model.entity.User;
 import model.service.UserService;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +25,7 @@ public class SignInCommand implements Command {
 
         UserService userService = new UserService();
         User user = userService.checkEmailPassword(email,password);
-
+        System.out.println(user.toString());
         if(user == null){
             return PathManager.getProperty("sign_in");//change
         }
