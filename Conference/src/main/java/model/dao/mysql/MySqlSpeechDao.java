@@ -42,7 +42,7 @@ public class MySqlSpeechDao implements SpeechDao {
             System.out.println("id"+id);
 
         } catch (SQLException e) {
-            LOGGER.error(e);
+            LOGGER.warn(e);
             if(e.getErrorCode() == 1062||e.getMessage().contains("Duplicate entry"))
                 throw  new ReRegisterSpeech();
         }
@@ -51,7 +51,15 @@ public class MySqlSpeechDao implements SpeechDao {
 
     @Override
     public boolean update(Speech speech) {
-        return false;
+        try(Connection connection = source.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlStatementManager.getProperty("speechUpdate"));
+            preparedStatement.setString(1, speech.getTheme());
+            preparedStatement.setInt(2,(int)speech.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return true;
     }
 
     @Override

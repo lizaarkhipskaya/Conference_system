@@ -23,11 +23,11 @@
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
-    <c:import url="\header.jsp" charEncoding="utf-8" />
+    <c:import url="\component\header.jsp" charEncoding="utf-8" />
     <div class="container">
         <div class="myForm bg-light">
         <h3 class="text-center">Glad to see u again!</h3>
-            <form class="form" action="/app/sign_in">
+            <form class="form" action="/app/sign_in" method="post">
                 <div class="col-md-12">
                     <div class="form-group">
                         <input type="email" name="email" class="form-control" placeholder="<fmt:message key='sign_in.placeholder.email'/>" />
@@ -38,13 +38,12 @@
                         <input type="password" name="password" class="form-control" placeholder="<fmt:message key='sign_in.placeholder.password'/>"/>
                     </div>
                 </div>
+                <h4><p class="text-danger">${invalidEmailOrPassword}<p><h4>
                 <div class="text-center col-md-12">
-                    <input type="submit"  value="<fmt:message key='sign_in.label.submit'/>" />
+                    <input type="submit" class="btn btn-outline-secondary btn-lg"  value="<fmt:message key='sign_in.label.submit'/>" />
                 </div>
             </form>
-            <form action="/app/sign_in">
-                <input type="submit" class="btn btn-default" value="<fmt:message key='sign_in.label.sign_up'/>"   />
-            </form>
+             <a href="/app/map?source=sign_up" ><fmt:message key='sign_in.label.sign_up'/></a>
         </div>
     </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

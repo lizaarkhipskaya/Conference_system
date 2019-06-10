@@ -11,6 +11,8 @@ public class ContentManager {
         return bundle.containsKey(key) ? bundle.getString(key) : "";
     }
     public static void setLocalizedMessage(HttpServletRequest request, String attributeKey, String messageKey) {
-        request.setAttribute(attributeKey, getLocalizedContent(messageKey,  Locale.forLanguageTag((String) request.getSession().getAttribute("locale"))));
+        String locale = (String) request.getSession().getAttribute("locale");
+        request.setAttribute(attributeKey, getLocalizedContent(messageKey, locale==null ? Locale.getDefault():Locale.
+                forLanguageTag(locale)));
     }
 }

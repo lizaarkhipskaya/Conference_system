@@ -23,10 +23,10 @@
     <link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet" type="text/css">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
-    <c:import url="\header.jsp" charEncoding="utf-8" />
+    <c:import url="\component\header.jsp" charEncoding="utf-8" />
     <div class="container">
         <div class="myForm bg-light">
-            <h3 class="text-center">Well Style Blue</h3>
+            <h3 class="text-center"><fmt:message key='sign_up.header'/></h3>
                 <form class="form" action="/app/sign_up" method="post" style="font-size: 1rem;">
                 <h1>${reregistrationUser}</h1>
                     <div class="col-md-12">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="text-center col-md-12">
-                        <input type="submit"  value="<fmt:message key='sign_up.placeholder.submit'/>" />
+                        <input type="submit" class="btn btn-outline-secondary btn-lg" value="<fmt:message key='sign_up.placeholder.submit'/>" />
                     </div>
                 </form>
             <a  href="${pageContext.request.contextPath}/app/map?source=sign_in"><span><fmt:message key='login.label.sign_in'/></span></a>

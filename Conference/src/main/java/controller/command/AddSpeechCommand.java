@@ -25,11 +25,11 @@ public class AddSpeechCommand implements Command {
         String idConference = request.getParameter("id");
 
         if(!validateTheme(theme)){
-            request.setAttribute("incorrectTheme",ContentManager.getLocalizedContent("incorrectTheme", Locale.getDefault()));//LOCALEEEELLLELELLEL
+            ContentManager.setLocalizedMessage(request,"incorrectTheme","incorrectTheme");
+            //request.setAttribute("incorrectTheme",ContentManager.getLocalizedContent("incorrectTheme", Locale.getDefault()));//LOCALEEEELLLELELLEL
             return PathManager.getProperty("main_page");
         }
 
-        System.out.println(((User)request.getSession().getAttribute("user")).toString());
         Speaker speaker = (Speaker) request.getSession().getAttribute("user");
 
         Speech speech = Speech.builder()
@@ -38,21 +38,17 @@ public class AddSpeechCommand implements Command {
                 .speaker(speaker)
                 .build();
 
-        System.out.println("speech"+speech.toString());
-
         try {
             speechService.addSpeech(speech);
         } catch (ReRegisterSpeech reRegisterSpeech) {
-            reRegisterSpeech.printStackTrace();
             LOGGER.warn("Speaker"+speaker.toString()+" re-register speech",reRegisterSpeech);
-            request.setAttribute("incorrectSpeechRegister",ContentManager.getLocalizedContent("incorrectSpeechRegister",Locale.getDefault()));
+            ContentManager.setLocalizedMessage(request,"incorrectSpeechRegister","incorrectSpeechRegister");
+            //request.setAttribute("incorrectSpeechRegister",ContentManager.getLocalizedContent("incorrectSpeechRegister",Locale.getDefault()));
             return PathManager.getProperty("main_page");
         } catch (ReRegisterExeption reRegisterExeption) {
             LOGGER.warn(reRegisterExeption);
         }
-
-        request.setAttribute("successfullyCompletedAdd", ContentManager.getLocalizedContent("successfullyCompletedAdd", Locale.getDefault()));
-
+        ContentManager.setLocalizedMessage(request,"successfullyCompletedAdd","successfullyCompletedAdd");
         return PathManager.getProperty("main_page");
     }
 

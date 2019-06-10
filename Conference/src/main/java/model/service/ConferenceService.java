@@ -1,10 +1,10 @@
 package model.service;
 
 import model.dao.ConferenceDao;
-import model.dao.mysql.MySqlConferenceDao;
 import model.dao.mysql.MySqlDaoFactory;
 import model.dto.ConferenceDto;
 import model.entity.Conference;
+import model.exeption.ReRegisterExeption;
 
 import java.util.List;
 
@@ -27,5 +27,11 @@ public class ConferenceService {
 
     public List<ConferenceDto> getConferenceForSpeech() {
         return  conferenceDao.getConferencesForSpeech();
+    }
+
+    public long getCountOfRowsInConferenceList(int timeFlag){return conferenceDao.getCountOfRowsInConferenceList(timeFlag);}
+
+    public long insert(Conference conference) throws ReRegisterExeption {
+        return conferenceDao.insert(conference);
     }
 }

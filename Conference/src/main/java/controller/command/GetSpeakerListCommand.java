@@ -15,6 +15,7 @@ public class GetSpeakerListCommand implements Command {
         SpeakerService speakerService = new SpeakerService();
         List<Speaker> speakerList = speakerService.getSpeakers(LIMIT);
         request.setAttribute("speakerList",speakerList);
+
         return PathManager.getProperty("speakerList");
     }
 }

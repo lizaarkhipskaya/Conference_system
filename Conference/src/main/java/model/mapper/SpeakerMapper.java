@@ -10,9 +10,11 @@ public class SpeakerMapper implements Mapper<Speaker, ResultSet> {
     @Override
     public Speaker mapToObject(ResultSet resultSet) throws SQLException {
         return  Speaker.builder()
+                .id(Long.valueOf(resultSet.getInt("user_id")))
                 .name(resultSet.getString("name"))
                 .surname(resultSet.getString("surname"))
                 .reating(Integer.valueOf(resultSet.getString("reating")))
+                .role(User.Role.SPEAKER)
                 .build();
     }
 

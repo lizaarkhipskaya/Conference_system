@@ -21,7 +21,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
     <header class="header">
         <div class="maincontainer">
-            <c:import url="/WEB-INF/header.jsp" charEncoding="utf-8" />
+            <c:import url="/WEB-INF/component/header.jsp" charEncoding="utf-8" />
         </div>
     </header>
     <div class="about">
@@ -33,20 +33,26 @@
                 <c:import url="/WEB-INF/${role}/menu.jsp" charEncoding="utf-8" />
             </c:if>
             <main class="col-md-9">
-            <div class="row">
-                <div class="container">
-                    <c:forEach var="speaker" items="${speakerList}">
-                    <div class="row">
-                        <div class="col-md-4">
-                            ${speaker.name} ${speaker.surname}
-                        </div>
-                        <div class="col-md-2">
-                            ${speaker.reating}
+                <div class="row">
+                   <div class="col-md-4  col-offset-4  centered">
+                        <div class="container">
+                            <c:forEach var="speaker" items="${speakerList}">
+                                <div class = "card  my-4 w-90">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            ${speaker.name} ${speaker.surname}
+                                        </div>
+                                        <div class="col-md-2">
+                                            ${speaker.reating}
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
-                    </c:forEach>
                 </div>
-            </div>
             </main>
         </div>
     </div>

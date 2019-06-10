@@ -13,4 +13,8 @@ public class SpeechService {
     public long addSpeech(Speech speech) throws ReRegisterExeption {
         return  speechDao.insert(speech);
     }
+
+    public boolean changeTheme(Speech speech) {
+        return speechDao.update(speech);
+    }
 }

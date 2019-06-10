@@ -13,4 +13,6 @@ public interface ConferenceDao extends EntityDao<Conference, Long> {
     List<ConferenceDto> getPast(int counter, int confNumberInOnePage);
 
     List<ConferenceDto> getConferencesForSpeech();
+
+    long getCountOfRowsInConferenceList(int timeFlag);
 }

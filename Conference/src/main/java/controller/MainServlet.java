@@ -40,4 +40,3 @@ public class MainServlet extends HttpServlet {
 
     }
 }
-//add log configuration

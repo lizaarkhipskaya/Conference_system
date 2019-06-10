@@ -26,14 +26,17 @@
             </div>
         </div>
         <button class="btn btn-outline-secondary btn-lg" type="submit">Отправить</button>
-        ${successfullyCompletedAdd}
-        ${incorrectSpeechRegister}
+        <h4><p class="text-success">${successfullyCompletedAdd}</p></h4>
+        <h4><p class="text-danger ">${incorrectSpeechRegister}<h4><p class="text-danger">
     </form>
 </div>
 <div class="col-md-6">
     <h1>Личная информация</h1>
-    <p>${user.name}</p>
-    <p>${user.surname}</p>
-    <p>${user.email}</p>
-
+    <div class="card">
+             <div class="card-body">
+               <p class="text-secondary">Ваше имя: ${user.name}</p>
+               <p class="text-secondary">Ваша фамилия: ${user.surname}</p>
+               <p class="text-secondary">Ваша почта: ${user.email}</p>
+             </div>
+           </div>
 </div>

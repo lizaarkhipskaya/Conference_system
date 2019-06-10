@@ -12,7 +12,8 @@ public class MapCommand implements Command {//check how to change!!!!!!!!!!
     }
     private enum MapEnum{
         SIGN_UP(PathManager.getProperty("sign_up")),
-        SIGN_IN(PathManager.getProperty("sign_in"));
+        SIGN_IN(PathManager.getProperty("sign_in")),
+        ABOUT(PathManager.getProperty("about"));
         String pageName;
 
 

@@ -22,7 +22,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
     <header class="header">
         <div class="maincontainer">
-            <c:import url="/WEB-INF/header.jsp" charEncoding="utf-8" />
+            <c:import url="/WEB-INF/component/header.jsp" charEncoding="utf-8" />
         </div>
     </header>
     <div class="about">

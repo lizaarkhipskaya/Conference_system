@@ -1,6 +1,7 @@
 package model.dao.mysql;
 
 import controller.manager.SqlStatementManager;
+import model.exeption.ReRegisterConference;
 import model.mapper.ConferenceDtoMapper;
 import model.mapper.ConferenceMapper;
 import model.mapper.SpeakerMapper;
@@ -16,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class MySqlConferenceDao implements ConferenceDao {
@@ -51,8 +53,24 @@ public class MySqlConferenceDao implements ConferenceDao {
     }
 
     @Override
-    public Long insert(Conference conference) {
-        return null;
+    public Long insert(Conference conference) throws ReRegisterConference {
+        Long id = null;
+        try(Connection connection = source.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlStatementManager.getProperty("conferenceInsert"),java.sql.Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, conference.getTheme());
+            preparedStatement.setTimestamp(2, conference.getDate());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
+            id = Long.valueOf(resultSet.getInt(1));
+
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            if(e.getErrorCode() == 1062||e.getMessage().contains("Duplicate entry"))
+                throw  new ReRegisterConference();
+        }
+        return id;
     }
 
     @Override
@@ -68,8 +86,7 @@ public class MySqlConferenceDao implements ConferenceDao {
     public List<ConferenceDto> getComingUp(int counter, int confNumberInOnePage){
         List<ConferenceDto> conferenceDtoList = new ArrayList<>();
         try(Connection connection = source.getConnection()) {
-            PreparedStatement ps = null;
-                ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetUpcoming"));
+            PreparedStatement ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetUpcoming"));
                 ps.setInt(1, counter*confNumberInOnePage);
                 ps.setInt(2, confNumberInOnePage);
             ResultSet rs = ps.executeQuery();
@@ -87,8 +104,7 @@ public class MySqlConferenceDao implements ConferenceDao {
     public List<ConferenceDto> getTodayConferenceList() {
         List<ConferenceDto> conferenceDtoList = new ArrayList<>();
         try(Connection connection = source.getConnection()) {
-            PreparedStatement statement = null;
-            statement = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetToday"));
+            PreparedStatement statement = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetToday"));
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
                 ConferenceDto conferenceDto = conferenceDtoMapper.mapToObject(rs);
@@ -123,8 +139,8 @@ public class MySqlConferenceDao implements ConferenceDao {
     public List<ConferenceDto> getConferencesForSpeech() {
         List<ConferenceDto> conferenceDtoList = new ArrayList<>();
         try(Connection connection = source.getConnection()) {
-            PreparedStatement statement = null;
-            statement = connection.prepareStatement(SqlStatementManager.getProperty("conferencesForSpeech"));
+
+            PreparedStatement statement = connection.prepareStatement(SqlStatementManager.getProperty("conferencesForSpeech"));
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
                 ConferenceDto conferenceDto = conferenceDtoMapper.mapToObject(rs);
@@ -136,4 +152,29 @@ public class MySqlConferenceDao implements ConferenceDao {
         return conferenceDtoList;
     }
 
+    @Override
+    public long getCountOfRowsInConferenceList(int timeFlag) {
+        long result = 0;
+        PreparedStatement ps = null;
+        try(Connection connection = source.getConnection()){
+            switch (timeFlag){
+                case 1:
+                    System.out.println("case 1");
+                    ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetCountOfRowsInUpcoming"));
+                    break;
+                case -1:
+                    ps = connection.prepareStatement(SqlStatementManager.getProperty("conferenceGetCountOfRowsInPast"));
+                    break;
+                default:
+                    return result;
+            }
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            result = rs.getLong(1);
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return result;
+    }
 }

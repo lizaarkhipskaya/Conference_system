@@ -1,5 +1,6 @@
 package controller.command;
 
+import controller.manager.ContentManager;
 import controller.manager.PathManager;
 import model.entity.Speaker;
 import model.entity.User;
@@ -25,9 +26,10 @@ public class SignInCommand implements Command {
 
         UserService userService = new UserService();
         User user = userService.checkEmailPassword(email,password);
-        System.out.println(user.toString());
+
         if(user == null){
-            return PathManager.getProperty("sign_in");//change
+            ContentManager.setLocalizedMessage(request,"invalidEmailOrPassword","invalidEmailOrPassword");
+            return PathManager.getProperty("sign_in");
         }
 
         HttpSession httpSession = request.getSession();
@@ -43,7 +45,7 @@ public class SignInCommand implements Command {
         httpSession.setAttribute("role",user.getRole().toString().toLowerCase());
         httpSession.setAttribute("user",user);
 
-        return "redirect:"+PathManager.getProperty("main_page");//page_main and main_page !!!
+        return "redirect:"+PathManager.getProperty("main_page");
     }
 
 

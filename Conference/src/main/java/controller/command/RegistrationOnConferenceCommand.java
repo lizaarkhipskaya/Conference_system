@@ -17,7 +17,6 @@ public class RegistrationOnConferenceCommand implements Command {
 
         UserService userService = new UserService();
         HttpSession httpSession = request.getSession();
-        Locale locale = LocaleUtils.toLocale((String) request.getSession().getAttribute("locale"));
 
         long conferenceId = Long.valueOf(request.getParameter("id"));
 
@@ -25,7 +24,7 @@ public class RegistrationOnConferenceCommand implements Command {
             userService.registerOnConference((User)httpSession.getAttribute("user"),conferenceId);
         } catch (ReRegisterOnConferenceExeption reRegisterOnConferenceExeption) {
             reRegisterOnConferenceExeption.printStackTrace();
-            request.setAttribute("reregistration", ContentManager.getLocalizedContent("reregistration", Locale.getDefault()));//REFACTOR LOCALE
+            ContentManager.setLocalizedMessage(request,"reregistration","reregistration");
             return PathManager.getProperty("conference_info_with_id")+conferenceId;
         }
 

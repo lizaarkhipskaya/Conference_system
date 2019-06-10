@@ -11,16 +11,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto flex-column text-center">
                             <li class="nav-item active">
-                                <a href="" class="nav-link"></a>
+                                <a href="" class="nav-link">*</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Добавить новую конференция</a>
+                                <a href="" class="nav-link">*</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Спикеры</a>
+                                <a href="" class="nav-link">*</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Слушатели</a>
+                                <a href="" class="nav-link">*</a>
                             </li>
                         </ul>
                     </div>

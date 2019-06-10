@@ -17,6 +17,7 @@ public class GetTodayConferenceList implements Command {
         List<ConferenceDto> conferenceDtoList = conferenceService.
                 getTodayConferenceList();
         request.setAttribute("conferenceDtoList",conferenceDtoList);
+
         return PathManager.getProperty("conference_today");
     }
 }

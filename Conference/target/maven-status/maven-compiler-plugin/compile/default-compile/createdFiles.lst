@@ -25,6 +25,8 @@ controller\command\SignUpCommand$ValidationEnum$4.class
 controller\MainServlet.class
 model\dto\ConferenceDto$ConferenceDtoBuilder.class
 model\entity\Speech$SpeechBuilder.class
+model\exeption\ReRegisterConference.class
+controller\command\CommandEnum$17.class
 controller\command\SignOutCommand.class
 controller\filter\SecurityFilter.class
 controller\command\CommandEnum$4.class
@@ -49,6 +51,7 @@ model\dao\UserDao.class
 model\service\SpeakerService.class
 controller\filter\CashFilter.class
 model\mapper\UserMapper.class
+controller\command\NewThemeForSpeechCommand.class
 controller\command\GetWeekConferencesCommand.class
 controller\command\SignUpCommand$ValidationEnum$5.class
 model\dao\mysql\MySqlUserDao.class

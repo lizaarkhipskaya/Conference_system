@@ -23,7 +23,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
     <header class="header">
         <div class="maincontainer">
-            <c:import url="/WEB-INF/header.jsp" charEncoding="utf-8" />
+            <c:import url="/WEB-INF/component/header.jsp" charEncoding="utf-8" />
         </div>
     </header>
     <div class="about">
@@ -43,7 +43,8 @@
                                     <div class="card-title">
                                         <h5><c:out value="${confInfo.theme}"/></h5>
                                     </div>
-                                    <p class="card-text"><c:out value="${confInfo.date}"/></p>
+                                    <p class="card-text"><fmt:formatDate type = "both"
+                                        dateStyle = "short" timeStyle = "short" value = "${confInfo.date}" /></p>
                                     <c:if test="${confInfo.numberOfAttendees > 0}">
                                         <p class="card-text">Присутствовало :<c:out value="${confInfo.numberOfAttendees}"/></p>
                                     </c:if>
@@ -52,15 +53,17 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <div class="container">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <c:if test="${pageCount>1}">
+                        <div class="container">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <c:forEach var="i" begin="0" end="${pageCount-1}">
+                                        <li class="page-item"><a class="page-link" href="/app/up_coming_conferences?counter=${i}">${i+1}</a></li>
+                                    </c:forEach>
+                                </ul>
+                            </nav>
+                        </div>
+                    </c:if>
                 </div>
             </main>
         </div>

@@ -80,6 +80,11 @@ public enum CommandEnum {
         {
             this.command = new GetWeekConferencesCommand();
         }
+    },
+    NEW_THEME{
+        {
+            this.command = new NewThemeForSpeechCommand();
+        }
     }
 ;
 

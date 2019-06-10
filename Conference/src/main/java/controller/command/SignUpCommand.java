@@ -19,7 +19,7 @@ public class SignUpCommand implements Command {
 
         Map<String, String[]> parametersFromRequest = request.getParameterMap();
         Map<String,String> parameters = getAllParameters(parametersFromRequest);
-        parameters.forEach((k,v) -> System.out.println(k+ " "+v));
+
         if(allParamCorrect(parameters)){
             if(checkConfirmPassword(parameters)) {
                 UserService userService = new UserService();
@@ -28,7 +28,8 @@ public class SignUpCommand implements Command {
                     user = userService.addUser(parameters);
                 } catch (ReRegisterUserExeption reRegisterUserExeption) {
                     LOGGER.warn("user "+parameters.get("email")+"tried to re-register");
-                    request.setAttribute("reregistrationUser",ContentManager.getLocalizedContent("reregistrationUser",Locale.getDefault()));//REFACTOR LOCALE
+                    ContentManager.setLocalizedMessage(request,"reregistrationUser","reregistrationUser");
+                    //request.setAttribute("reregistrationUser",ContentManager.getLocalizedContent("reregistrationUser",Locale.getDefault()));//REFACTOR LOCALE
                     return PathManager.getProperty("sign_up");
                 } catch (ReRegisterExeption reRegisterExeption) {
                     LOGGER.warn(reRegisterExeption);
@@ -37,7 +38,7 @@ public class SignUpCommand implements Command {
                 return "redirect:" + PathManager.getProperty("map_sign_in");
             }
         }
-        getCorrectParameters(parameters,request).forEach((k,v)-> System.out.println("correct  "+k +" "+ v));
+
         request.setAttribute("correctParameters",getCorrectParameters(parameters,request));
         return PathManager.getProperty("sign_up");
     }
@@ -70,7 +71,8 @@ public class SignUpCommand implements Command {
                     corectParameters.put(key, value);
                 }
                 else {
-                    request.setAttribute("incorrect_"+key, ContentManager.getLocalizedContent("incorrect."+key,Locale.getDefault()));//change locale !!!!!
+                    ContentManager.setLocalizedMessage(request,"incorrect_"+key,"incorrect."+key);
+                    //request.setAttribute("incorrect_"+key, ContentManager.getLocalizedContent("incorrect."+key,Locale.getDefault()));//change locale !!!!!
                 }
             }
         return  corectParameters;

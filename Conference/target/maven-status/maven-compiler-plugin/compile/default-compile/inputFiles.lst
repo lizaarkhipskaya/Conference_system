@@ -1,3 +1,4 @@
+D:\lizaa\workspace\Spring Learning\Conference\src\main\java\controller\command\NewThemeForSpeechCommand.java
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\controller\command\GetSpeakerListCommand.java
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\model\service\UserService.java
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\controller\command\GetPastConferenceList.java
@@ -55,5 +56,6 @@ D:\lizaa\workspace\Spring Learning\Conference\src\main\java\model\entity\Confere
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\model\dto\ConferenceDto.java
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\model\entity\Speech.java
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\controller\command\CommandFactory.java
+D:\lizaa\workspace\Spring Learning\Conference\src\main\java\model\exeption\ReRegisterConference.java
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\model\entity\Speaker.java
 D:\lizaa\workspace\Spring Learning\Conference\src\main\java\model\mapper\ConferenceDtoMapper.java
