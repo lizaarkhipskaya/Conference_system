@@ -7,21 +7,21 @@
 <fmt:setLocale value="${locale}" scope="session" />
 
 <div class="col-md-6">
-       <h1>Личная информация</h1>
+       <h1><fmt:message key="user.profile.personal_info"/></h1>
        <div class="card">
          <div class="card-body">
-           <p class="text-secondary">Ваше имя: ${user.name}</p>
-           <p class="text-secondary">Ваша фамилия: ${user.surname}</p>
-           <p class="text-secondary">Ваша почта: ${user.email}</p>
+           <p class="text-secondary"><fmt:message key="user.profile.name"/>: ${user.name}</p>
+           <p class="text-secondary"><fmt:message key="user.profile.surname"/>: ${user.surname}</p>
+           <p class="text-secondary"><fmt:message key="user.profile.email"/>: ${user.email}</p>
          </div>
        </div>
     </div>
 
     <div class="col-md-6">
-        <h1>Новости</h1>
+        <h1><fmt:message key="user.profile.news"/></h1>
         <div class="card">
          <div class="card-body">
-            <div class="p-3 mb-2 bg-secondary text-white">Сдесь будут отображаться новости</div>
+            <div class="p-3 mb-2 bg-secondary text-white"><fmt:message key="user.profile.news"/></div>
          </div>
        </div>
     </div>

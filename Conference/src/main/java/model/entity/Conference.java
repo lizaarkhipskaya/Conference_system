@@ -14,4 +14,9 @@ public class Conference {
     private String theme;
     private List<Speech> speeches;
     private int numberOfAttendees;
+
+    @Override
+    public int hashCode(){
+        return 0;
+    }
 }

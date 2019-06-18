@@ -10,19 +10,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto flex-column text-center">
                             <li class="nav-item active">
-                                <a href="/app/main_page" class="nav-link">Личный кабинет</a>
+                                <a href="/app/main_page" class="nav-link"><fmt:message key="user.menu.personal_account"/></a>
                             </li>
                             <li class="nav-item active">
-                                <a href="/app/today_conferences" class="nav-link">Конференции сегодня</a>
+                                <a href="/app/today_conferences" class="nav-link"><fmt:message key="user.menu.today_conferences"/></a>
                             </li>
                             <li class="nav-item">
-                                <a href="/app/up_coming_conferences" class="nav-link">Предстоящие конференции</a>
+                                <a href="/app/up_coming_conferences" class="nav-link"><fmt:message key="user.menu.up_coming_conferences"/></a>
                             </li>
                             <li class="nav-item">
-                                <a href="/app/past_conferences" class="nav-link">Прошедшие конференции</a>
+                                <a href="/app/past_conferences" class="nav-link"><fmt:message key="user.menu.past_conferences"/></a>
                             </li>
                             <li class="nav-item">
-                                <a href="/app/speaker_list" class="nav-link">Рейтинг спикеров</a>
+                                <a href="/app/speaker_list" class="nav-link"><fmt:message key="user.menu.speaker_rating"/></a>
                             </li>
                         </ul>
                     </div>

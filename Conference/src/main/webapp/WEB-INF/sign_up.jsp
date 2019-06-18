@@ -31,13 +31,13 @@
                 <h1>${reregistrationUser}</h1>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="${correctParameters['first_name']}" name="first_name" placeholder="<fmt:message key='sign_up.placeholder.first_name'/>"/>
+                            <input type="text" class="form-control" value="${correctParameters['first_name']}" name="first_name" placeholder="<fmt:message key='login.placeholder.first_name'/>"/>
                             <p class="text-danger">${incorrect_first_name}</p>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="${correctParameters['last_name']}" name="last_name" placeholder="<fmt:message key='sign_up.placeholder.last_name'/>" />
+                            <input type="text" class="form-control" value="${correctParameters['last_name']}" name="last_name" placeholder="<fmt:message key='login.placeholder.last_name'/>" />
                             <p class="text-danger">${incorrect_last_name}</p>
                         </div>
                     </div>
@@ -62,13 +62,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <select class="form-control" name="role" id="exampleFormControlSelect1">
-                                <option id="exampleFormControlSelect1" value="speaker"><fmt:message key='sign_up.placeholder.speaker'/></option>
-                                <option id="exampleFormControlSelect1" value="listener"><fmt:message key='sign_up.placeholder.listener'/></option>
+                                <option id="exampleFormControlSelect1" value="speaker"><fmt:message key='login.placeholder.speaker'/></option>
+                                <option id="exampleFormControlSelect1" value="listener"><fmt:message key='login.placeholder.listener'/></option>
                             </select>
                         </div>
                     </div>
                     <div class="text-center col-md-12">
-                        <input type="submit" class="btn btn-outline-secondary btn-lg" value="<fmt:message key='sign_up.placeholder.submit'/>" />
+                        <input type="submit" class="btn btn-outline-secondary btn-lg" value="<fmt:message key='button.submit'/>" />
                     </div>
                 </form>
             <a  href="${pageContext.request.contextPath}/app/map?source=sign_in"><span><fmt:message key='login.label.sign_in'/></span></a>

@@ -36,6 +36,7 @@
                 <div class="row">
                    <div class="col-md-4  col-offset-4  centered">
                         <div class="container">
+                        <h1><fmt:message key='user.content.header.speaker_list'/></h1>
                             <c:forEach var="speaker" items="${speakerList}">
                                 <div class = "card  my-4 w-90">
                                 <div class="card-body">

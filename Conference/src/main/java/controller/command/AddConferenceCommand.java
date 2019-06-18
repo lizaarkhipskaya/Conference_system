@@ -14,6 +14,9 @@ import java.sql.Timestamp;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Set;
 
 public class AddConferenceCommand implements Command{
     public static final int MIN_THEME_LENGTH = 6;
@@ -45,7 +48,6 @@ public class AddConferenceCommand implements Command{
                 .build();
 
         ConferenceService conferenceService = new ConferenceService();
-
         try {
             conferenceService.insert(conference);
         } catch (ReRegisterExeption reRegisterExeption) {

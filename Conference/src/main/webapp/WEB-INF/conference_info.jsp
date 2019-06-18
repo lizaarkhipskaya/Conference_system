@@ -52,10 +52,10 @@
                                 <input type="hidden" name="themeSpeech" value="${speech.theme}"/>
                                 <input type="hidden" name="idConference" value="${conference.id}"/>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="${speech.theme}" name="new_theme" placeholder="New theme" />
+                                    <input type="text" class="form-control" value="${speech.theme}" name="new_theme" placeholder="<fmt:message key='user.moderator.content.new_theme'/>" />
                                 </div>
                                 <div class="form-control">
-                                     <input type="submit" class="btn btn-outline-secondary btn-lg" value="<fmt:message key='sign_up.placeholder.submit'/>" />
+                                     <input type="submit" class="btn btn-outline-secondary btn-lg" value="<fmt:message key='button.submit'/>" />
                                 </div>
                             </form>
                         </div>
@@ -68,16 +68,16 @@
                     <h3 text="danger" >${reregistration}</h3>
                 </c:if>
                 <c:if test="${empty reregistration}">
-                <a href="#"  id="bd" data-toggle="modal" data-target="#exampleModal">Зарегистрироваться</a>
+                <a href="#"  id="bd" data-toggle="modal" data-target="#exampleModal"><fmt:message key="user.content.label_register"/></a>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Подтверждение регистрации</h5>
+                          <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="user.content.confirm_register"/></h5>
                         </div>
                         <div class="modal-body">
                         <c:if test="${empty reregistration}">
-                          <a href="/app/registration_on_conference?id=${conference.id}"><button class="btn primary">Зарегистрироваться</button></a>
+                          <a href="/app/registration_on_conference?id=${conference.id}"><button class="btn primary"><fmt:message key="button.register"/></button></a>
                         </c:if>
                         <c:if test="${not empty reregistration}">
                           <h3 text="danger" >${reregistration}</h3>
@@ -91,16 +91,16 @@
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Новая тема</h5>
+                                                  <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="user.content.modal.header"/>Новая тема</h5>
                                                 </div>
                                                 <div class="modal-body">
                                                 <form action="/app/new_theme?id_speech=${speech.id}" method="post">
 
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" value="${speech_theme}" name="new_theme" placeholder="New theme" />
+                                                        <input type="text" class="form-control" value="${speech_theme}" name="new_theme" placeholder="<fmt:message key='user.content.modal.placeholder'/>" />
                                                     </div>
                                                     <div class="form-control">
-                                                        <input type="submit" class="btn btn-outline-secondary btn-lg" value="<fmt:message key='sign_up.placeholder.submit'/>" />
+                                                        <input type="submit" class="btn btn-outline-secondary btn-lg" value="<fmt:message key='button.submit'/>" />
                                                     </div>
                                                 </form>
                                                 </div>

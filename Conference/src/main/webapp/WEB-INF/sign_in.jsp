@@ -26,24 +26,24 @@
     <c:import url="\component\header.jsp" charEncoding="utf-8" />
     <div class="container">
         <div class="myForm bg-light">
-        <h3 class="text-center">Glad to see u again!</h3>
+        <h3 class="text-center"><fmt:message key='login.header'/></h3>
             <form class="form" action="/app/sign_in" method="post">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="<fmt:message key='sign_in.placeholder.email'/>" />
+                        <input type="email" name="email" class="form-control" placeholder="<fmt:message key='login.placeholder.email'/>" />
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="<fmt:message key='sign_in.placeholder.password'/>"/>
+                        <input type="password" name="password" class="form-control" placeholder="<fmt:message key='login.placeholder.password'/>"/>
                     </div>
                 </div>
                 <h4><p class="text-danger">${invalidEmailOrPassword}<p><h4>
                 <div class="text-center col-md-12">
-                    <input type="submit" class="btn btn-outline-secondary btn-lg"  value="<fmt:message key='sign_in.label.submit'/>" />
+                    <input type="submit" class="btn btn-outline-secondary btn-lg"  value="<fmt:message key='button.submit'/>" />
                 </div>
             </form>
-             <a href="/app/map?source=sign_up" ><fmt:message key='sign_in.label.sign_up'/></a>
+             <a href="/app/map?source=sign_up" ><fmt:message key='login.label.sign_up'/></a>
         </div>
     </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

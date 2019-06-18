@@ -1,4 +1,4 @@
-<%@ page isErrorPage="true" contentType="text/html; charset=UTF-8"language="java" pageEncoding="UTF-8"%>
+<%@ page isErrorPage="true" contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -24,9 +24,9 @@
 
 </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="60">
-    <c:import url="\component\header.jsp" charEncoding="utf-8" />
+    <c:import url="WEB-INF\component\header.jsp" charEncoding="utf-8" />
     <div class="about">
-        <h1><fmt:message key="error500"></h1>
+        <h1><fmt:message key="error500"/></h1>
     </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

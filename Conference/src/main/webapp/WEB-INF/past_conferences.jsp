@@ -48,7 +48,7 @@
                                     <c:if test="${confInfo.numberOfAttendees > 0}">
                                         <p class="card-text">Присутствовало :<c:out value="${confInfo.numberOfAttendees}"/></p>
                                     </c:if>
-                                    <a href="/app/conference_info?id=${confInfo.id}" class="btn btn-outline-secondary">See more</a>
+                                    <a href="/app/conference_info?id=${confInfo.id}" class="btn btn-outline-secondary"><fmt:message key="user.content.see_more"/></a>
                                 </div>
                             </div>
                         </div>

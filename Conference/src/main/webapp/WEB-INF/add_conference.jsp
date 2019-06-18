@@ -1,8 +1,6 @@
-<%@ page errorPage="../error_500.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 
 <fmt:setBundle basename="page_content"/>
 <fmt:setLocale value="${locale}" scope="session" />
@@ -23,7 +21,7 @@
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
     <header class="header">
-        <div class="maincontainer">
+        <div class="maincontainer">+
             <c:import url="/WEB-INF/component/header.jsp" charEncoding="utf-8" />
         </div>
     </header>
@@ -37,17 +35,17 @@
             </c:if>
             <main class="col-md-9">
                 <form class="form" action="/app/add_conference" method="post" style="font-size: 1rem;">
-                <h1>Новая конференция</h1>
+                <h1><fmt:message key="user.content.header.new_conference"/></h1>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="theme">Введите тему конференции</label>
-                                <input type="text" class="form-control" id="theme"  name="theme" placeholder="Theme"/>
+                            <label for="theme"><fmt:message key="user.moderator.content.label_theme"/></label>
+                                <input type="text" class="form-control" id="theme"  name="theme" placeholder="<fmt:message key='user.moderator.placeholder.theme'/>"/>
                             ${invalidTheme}
                             </div>
                         </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                     <label for="datetimepicker2">Выберите дату, нажав на кнопку поля справа</label>
+                                     <label for="datetimepicker2"><fmt:message key="user.moderator.content.label_date"/></label>
                                         <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                             <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" name="date"/>
                                             <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
@@ -67,7 +65,7 @@
                                 <p class="text-danger">${invalidDate}</p>
                         <div class="text-center col-md-6">
                         <div class="form-group">
-                              <input type="submit"  value="<fmt:message key='sign_up.placeholder.submit'/>" />
+                              <input type="submit"  value="<fmt:message key='button.submit'/>" />
                               <p class="text-danger">${reregistrationConference}</p>
                         </div>
                         </div>

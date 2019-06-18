@@ -35,7 +35,7 @@
                 <c:import url="/WEB-INF/${role}/menu.jsp" charEncoding="utf-8" />
             </c:if>
             <main class="col-md-9">
-                <h1>Конференции сегодня</h1>
+                <h1><fmt:message key="user.content.header.conference_today"/></h1>
                 <div class="row">
                     <c:forEach var="confInfo" items="${conferenceDtoList}">
                         <div class="col-md-4">
@@ -45,7 +45,7 @@
                                         <h5><c:out value="${confInfo.theme}"/></h5>
                                     </div>
                                     <p class="card-text"><c:out value="${confInfo.date}"/></p>
-                                    <a href="/app/conference_info?id=${confInfo.id}" class="btn btn-outline-secondary">See more</a>
+                                    <a href="/app/conference_info?id=${confInfo.id}" class="btn btn-outline-secondary"><fmt:message key="user.content.see_more"/></a>
                                 </div>
                             </div>
                         </div>
